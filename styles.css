@@ -208,8 +208,10 @@ nav h1 {
     height: 100vh;
     display: flex;
     align-items: center;
+    justify-content: center;
     color: white;
     overflow: hidden;
+    background: url(back_1.gif);
 }
 
 .hero h1 {
@@ -226,14 +228,12 @@ nav h1 {
 
 .background-clip {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    min-width: 100%;
-    min-height: 100%;
-    width: auto;
-    height: auto;
-    transform: translateX(-50%) translateY(-50%);
-    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
 }
 
 .hero .container {
@@ -831,7 +831,7 @@ footer {
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 49px;
+        top: 58px;
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.95);
@@ -896,6 +896,7 @@ footer {
     .contact-section,
     .login-section {
         padding: 5rem 1rem 3rem;
+        background: url(back.gif);
     }
 }
 
@@ -1029,7 +1030,7 @@ footer {
 /* Contact Page Specific Styles */
 .contact-section {
     padding: 10rem 0 5rem;
-    background: #f8f8f8;
+    background: url(back.gif);
 }
 
 .contact-info {
@@ -1117,7 +1118,7 @@ footer {
 /* My Tickets Section */
 .my-tickets-section {
     padding: 10rem 0 5rem;
-    background: #f8f8f8;
+    background: url(back.gif);
 }
 
 .tickets-list {
@@ -1294,7 +1295,7 @@ footer {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.5);
     z-index: -1;
 }
 
