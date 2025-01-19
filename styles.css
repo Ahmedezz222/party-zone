@@ -829,7 +829,7 @@ footer {
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 49px;
+        top: 59px;
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.95);
@@ -894,6 +894,7 @@ footer {
     .contact-section,
     .login-section {
         padding: 5rem 1rem 3rem;
+        background: url(back.png) no-repeat center center/cover;
     }
 }
 
@@ -918,6 +919,7 @@ footer {
 
     .section-title {
         font-size: 2rem;
+        color: white;
     }
 
     .container {
@@ -1037,7 +1039,7 @@ footer {
 /* Contact Page Specific Styles */
 .contact-section {
     padding: 10rem 0 5rem;
-    background: #f8f8f8;
+    background: url(back.png) no-repeat center center/cover;
 }
 
 .contact-info {
@@ -1125,7 +1127,7 @@ footer {
 /* My Tickets Section */
 .my-tickets-section {
     padding: 10rem 0 5rem;
-    background: #f8f8f8;
+    background: url(back.png) no-repeat center center/cover;
 }
 
 .tickets-list {
