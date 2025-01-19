@@ -16,11 +16,7 @@
                     <a href="index.html" class="logo" aria-label="Party Zone Home">
                         <img src="party zone.png" alt="Party Zone Logo">
                     </a>
-                    <h1 style="
-    color: white;
-    margin-left: -45px;
-    margin-top: -40px;
-">thepartiezone_</h1>
+                    <h1>thepartiezone_</h1>
                 </div>
                 <div class="nav-links" role="navigation">
                     <a href="index.html" aria-current="page">Home</a>
@@ -29,7 +25,7 @@
                     <a href="contact.html">Contact</a>
                     <a href="login.html">Login</a>
                 </div>
-                <button class="menu-btn" aria-label="Toggle menu">
+                <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -37,13 +33,72 @@
     </header>
     <main>
         <section id="home" class="hero">
-            <video autoplay="" loop="" muted="" playsinline="" class="background-clip">
+            <video autoplay loop muted playsinline poster="party zone v2.mp4" id="bgVideo" class="background-clip">
                 <source src="party zone v.mp4" type="video/mp4">
+                Your browser does not support the video tag.
             </video>
             <div class="container">
                 <h1>Welcome To</h1>
                 <h2>PARTY ZONE</h2>
                 <a href="#tickets" class="cta-button">Get Tickets</a>
+            </div>
+        </section>
+
+        <section id="events" class="events-section">
+            <div class="container">
+                <h2 class="section-title">Upcoming Events</h2>
+                <div class="event-grid">
+                    <!-- Event Card 1 -->
+                    <div class="event-card">
+                        <img src="event1.jpg" alt="Summer Party">
+                        <div class="event-date">
+                            <span class="day">15</span>
+                            <span class="month">Aug</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>Summer Beach Party</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> North Coast</p>
+                            <p class="event-time"><i class="far fa-clock"></i> 8:00 PM</p>
+                            <p class="event-description">Join us for the ultimate summer beach party with live DJ sets and amazing vibes!</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 2 -->
+                    <div class="event-card">
+                        <img src="event2.jpg" alt="Pool Party">
+                        <div class="event-date">
+                            <span class="day">20</span>
+                            <span class="month">Aug</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>Pool Party Extravaganza</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Sahel</p>
+                            <p class="event-time"><i class="far fa-clock"></i> 2:00 PM</p>
+                            <p class="event-description">Cool off at our exclusive pool party featuring top DJs and refreshing drinks!</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+
+                    <!-- Event Card 3 -->
+                    <div class="event-card">
+                        <img src="event3.jpg" alt="Sunset Party">
+                        <div class="event-date">
+                            <span class="day">25</span>
+                            <span class="month">Aug</span>
+                        </div>
+                        <div class="event-info">
+                            <h3>Sunset Beach Festival</h3>
+                            <p class="event-location"><i class="fas fa-map-marker-alt"></i> Marina</p>
+                            <p class="event-time"><i class="far fa-clock"></i> 5:00 PM</p>
+                            <p class="event-description">Experience the perfect sunset with great music and amazing company!</p>
+                            <button class="book-btn">Book Now</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="events-cta">
+                    <a href="events.html" class="cta-button">View All Events</a>
+                </div>
             </div>
         </section>
     </main>
@@ -60,6 +115,5 @@
         </div>
     </footer>
     <script src="script.js"></script>
-
 
 </body></html>

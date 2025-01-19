@@ -112,4 +112,63 @@ document.addEventListener('DOMContentLoaded', () => {
             alert(`Selected ${ticketType} ticket for EGP ${ticketPrice}`);
         });
     });
+
+    // Ensure video plays
+    const video = document.getElementById('bgVideo');
+    
+    // Function to handle video loading
+    function handleVideo() {
+        video.play().catch(function(error) {
+            console.log("Video autoplay failed:", error);
+            // Add fallback class if video fails
+            video.closest('.hero').classList.add('video-fallback');
+        });
+    }
+
+    // Handle video loading
+    if (video) {
+        video.addEventListener('loadeddata', handleVideo);
+        
+        // Reload video when it ends
+        video.addEventListener('ended', function() {
+            video.play();
+        });
+
+        // Handle visibility changes
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                video.pause();
+            } else {
+                video.play();
+            }
+        });
+
+        // Handle video errors
+        video.addEventListener('error', function(e) {
+            console.error('Error loading video:', e);
+            // Fallback to static background if video fails
+            video.style.display = 'none';
+            video.closest('.hero').style.backgroundImage = "url('party-zone-poster.jpg')";
+        });
+    }
+
+    // Create Event Form Handling
+    const createEventForm = document.getElementById('createEventForm');
+    if (createEventForm) {
+        createEventForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            
+            // Here you would typically send this data to your server
+            console.log('Event Creation Data:', Object.fromEntries(formData));
+            
+            // Show success message
+            alert('Event created successfully!');
+            
+            // Reset form
+            this.reset();
+        });
+    }
 });
