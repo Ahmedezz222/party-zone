@@ -211,9 +211,7 @@ nav h1 {
     justify-content: center;
     color: white;
     overflow: hidden;
-    background: url(back_1.gif);
 }
-
 .hero h1 {
     font-size: 2.5rem;
     text-align: center;
@@ -831,7 +829,7 @@ footer {
         display: flex;
         flex-direction: column;
         position: fixed;
-        top: 58px;
+        top: 49px;
         left: 0;
         right: 0;
         background: rgba(0, 0, 0, 0.95);
@@ -896,11 +894,20 @@ footer {
     .contact-section,
     .login-section {
         padding: 5rem 1rem 3rem;
-        background: url(back.gif);
     }
 }
 
 @media (max-width: 480px) {
+    .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+        background: url(back_1.gif) no-repeat center center/cover;
+    }
     .hero h1 {
         font-size: 2.5rem;
     }
@@ -1030,7 +1037,7 @@ footer {
 /* Contact Page Specific Styles */
 .contact-section {
     padding: 10rem 0 5rem;
-    background: url(back.gif);
+    background: #f8f8f8;
 }
 
 .contact-info {
@@ -1118,7 +1125,7 @@ footer {
 /* My Tickets Section */
 .my-tickets-section {
     padding: 10rem 0 5rem;
-    background: url(back.gif);
+    background: #f8f8f8;
 }
 
 .tickets-list {
