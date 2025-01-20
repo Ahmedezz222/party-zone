@@ -1092,7 +1092,7 @@ footer {
 
     .section-title {
         font-size: 2rem;
-        color: white;
+        color: rgba(0, 0, 0, 0.95);
     }
 
     .container {
