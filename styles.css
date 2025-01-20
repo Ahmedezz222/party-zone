@@ -10,10 +10,11 @@ body {
 }
 
 .container {
-    width: min(90%, 1200px);
+    width: min(60%, 1020px);
     margin-inline: auto;
     padding-inline: clamp(1rem, 3vw, 2rem);
     position: relative;
+    padding: 5px -1px;
 }
 
 .container-narrow {
@@ -264,7 +265,7 @@ nav h1 {
     text-align: center;
     margin-bottom: 3rem;
     font-size: 2.5rem;
-    color: #333;
+    color: #ffffff;
 }
 
 .contact-container {
@@ -451,592 +452,152 @@ footer {
     }
 }
 
-/* Events Section */
+/* Optimized Events Section */
 .events-section {
-    padding: 12rem 0 5rem;
-    background: #f8f8f8;
+    padding: 8rem 0 5rem;
+    background: url(back_2.png) no-repeat center center/cover;
+    position: relative;
+    z-index: 1;
 }
 
 .event-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
     margin-top: 3rem;
+    padding: 0 1rem;
 }
 
 .event-card {
     position: relative;
-    background: white;
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 20px;
     overflow: hidden;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    display: flex;
-    flex-direction: column;
-    transform-origin: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transform: translateY(0);
+    isolation: isolate;
 }
 
 .event-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 8px 25px rgba(50, 1, 120, 0.2);
-}
-
-.event-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 100%;
-    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.02));
-    pointer-events: none;
+    transform: translateY(-15px);
+    box-shadow: 0 15px 35px rgba(50, 1, 120, 0.15);
 }
 
 .event-card img {
     width: 100%;
-    height: 250px;
+    height: 280px;
     object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.event-card:hover img {
+    transform: scale(1.05);
 }
 
 .event-date {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: #320178;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #320178, #27005D);
     color: white;
-    padding: 10px;
-    border-radius: 8px;
+    padding: 12px;
+    border-radius: 12px;
     text-align: center;
+    box-shadow: 0 4px 15px rgba(50, 1, 120, 0.2);
+    backdrop-filter: blur(5px);
 }
 
 .event-date .day {
-    font-size: 1.5rem;
-    font-weight: bold;
+    font-size: 1.8rem;
+    font-weight: 700;
     display: block;
+    line-height: 1;
+    margin-bottom: 4px;
 }
 
 .event-date .month {
     font-size: 0.9rem;
     text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
 }
 
 .event-info {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding: 1.5rem;
+    padding: 2rem;
+    background: white;
 }
 
 .event-info h3 {
-    color: #333;
+    color: #1a1a1a;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-weight: 600;
 }
 
 .event-location,
 .event-time {
     color: #666;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .event-location i,
 .event-time i {
-    margin-right: 0.5rem;
     color: #320178;
+    font-size: 1.1rem;
 }
 
 .event-description {
-    margin: 1rem 0;
+    margin: 1.5rem 0;
     color: #555;
+    line-height: 1.6;
 }
 
 .book-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #320178;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #320178, #27005D);
     color: white;
     border: none;
-    border-radius: 25px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
     cursor: pointer;
-    font-weight: 500;
     transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
 .book-btn:hover {
-    background: #320178;
+    background: linear-gradient(135deg, #27005D, #320178);
     transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(50, 1, 120, 0.2);
 }
 
-/* Events Header Section */
-.events-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 3rem;
-}
-
-.create-event-btn {
-    display: inline-block;
-    padding: 0.8rem 1.5rem;
-    background: #320178;
-    color: white;
-    text-decoration: none;
-    border-radius: 25px;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.create-event-btn:hover {
-    background: #270160;
-    transform: translateY(-2px);
-}
-
-/* Tickets Section */
-.tickets-section {
-    padding: 8rem 0 5rem;
-    background: #f8f8f8;
-}
-
-.tickets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
-    margin-top: 3rem;
-    padding: 0 1rem;
-}
-
-.ticket-card {
-    background: white;
-    border-radius: 15px;
-    padding: 2rem;
-    text-align: center;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-    position: relative;
-    overflow: hidden;
-}
-
-.ticket-card:hover {
-    transform: translateY(-10px);
-}
-
-.ticket-card.featured {
-    border: 2px solid #320178;
-    transform: scale(1.05);
-}
-
-.ticket-card.featured:hover {
-    transform: scale(1.05) translateY(-10px);
-}
-
-.ticket-type {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #320178;
-    margin-bottom: 1rem;
-}
-
-.ticket-price {
-    margin: 1.5rem 0;
-}
-
-.ticket-price .currency {
-    font-size: 1.2rem;
-    vertical-align: top;
-}
-
-.ticket-price .amount {
-    font-size: 3rem;
-    font-weight: bold;
-    color: #320178;
-}
-
-.ticket-features {
-    list-style: none;
-    padding: 0;
-    margin: 2rem 0;
-}
-
-.ticket-features li {
-    margin: 1rem 0;
-    color: #666;
-}
-
-.ticket-features i {
-    color: #320178;
-    margin-right: 0.5rem;
-}
-
-/* Login Section */
-.login-section {
-    padding: 10rem 0 5rem;
-    background: #f8f8f8;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-}
-
-.login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
-}
-
-.login-container h2 {
-    text-align: center;
-    color: #333;
-    margin-bottom: 2rem;
-}
-
-.login-form .form-group {
-    margin-bottom: 1.5rem;
-}
-
-.register-link {
-    text-align: center;
-    margin-top: 1rem;
-    color: #666;
-}
-
-.register-link a {
-    color: #320178;
-    text-decoration: none;
-    font-weight: 500;
-}
-
-.register-link a:hover {
-    text-decoration: underline;
-}
-
-.active {
-    color: #320178 !important;
-    font-weight: bold !important;
-}
-
-/* Responsive Design */
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-        margin-right: 0;
-    }
-
-    .menu-btn {
-        display: block;
-        margin-right: 1rem;
-    }
-
-    .logo img {
-        margin-left: 0;
-        height: 40px;
-    }
-
-    .hero h1 {
-        font-size: 3.5rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .hero h2 {
-        font-size: 2.5rem;
-        margin: 0;
-        margin-bottom: 2rem;
-    }
-
     .event-grid {
         grid-template-columns: 1fr;
-        padding: 0;
+        gap: 2rem;
+        padding: 0 1rem;
     }
 
     .event-card {
-        margin: 0 1rem 1.5rem;
+        max-width: 400px;
+        margin: 0 auto;
     }
 
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 1rem;
-        text-align: center;
-        gap: 1rem;
-    }
-
-    .events-section,
-    .tickets-section,
-    .contact-section,
-    .login-section {
-        padding: 6rem 0 3rem;
-    }
-
-    .contact-container {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .contact-info {
-        grid-template-columns: 1fr;
-        order: 2;
-    }
-
-    .tickets-grid {
-        grid-template-columns: 1fr;
-        padding: 0 1rem;
-    }
-
-    .ticket-card.featured {
-        transform: none;
-    }
-
-    footer {
-        padding: 20px;
-    }
-
-    .cta-button,
-    .book-btn,
-    .submit-btn {
-        width: 100%;
-        text-align: center;
-        padding: 0.8rem 1.5rem;
-    }
-
-    /* Navigation */
-    nav .container {
-        padding: 0.5rem;
-    }
-
-    .logo img {
-        height: 35px;
-        margin-left: -15px;
-    }
-
-    nav h1 {
-        font-size: 1.2rem;
-        margin: 0;
-        margin-left: 32px;
-        margin-top: -32px;
-        color: white;
-    }
-
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: fixed;
-        top: 59px;
-        left: 0;
-        right: 0;
-        background: rgba(0, 0, 0, 0.95);
-        padding: 7.5rem;
-        gap: 2rem;
-        z-index: 999;
-    }
-
-    /* Hero Section */
-    .hero h1 {
-        font-size: 2.8rem;
-        margin-bottom: 0.5rem;
-    }
-
-    .hero h2 {
-        font-size: 2rem;
-        margin: 0 auto 1.5rem;
-        text-align: center;
-    }
-
-    /* Cards and Grids */
-    .event-grid,
-    .tickets-grid {
-        grid-template-columns: 1fr;
-        gap: 1.5rem;
-        margin: 2rem 0;
-    }
-
-    .event-card,
-    .ticket-card {
-        margin: 0;
-    }
-
-    .ticket-card.featured {
-        transform: none;
-        border-width: 3px;
-    }
-
-    /* Forms */
-    .form-group input,
-    .form-group textarea {
-        padding: 1rem;
-        font-size: 16px; /* Prevents zoom on iOS */
-    }
-
-    .submit-btn,
-    .book-btn,
-    .cta-button {
-        width: 100%;
-        padding: 1rem;
-        font-size: 1rem;
-    }
-
-    /* Sections Spacing */
-    .section-title {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-    }
-
-    .events-section,
-    .tickets-section,
-    .contact-section,
-    .login-section {
-        padding: 5rem 1rem 3rem;
-        background: url(back.png) no-repeat center center/cover;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero {
-        position: relative;
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        overflow: hidden;
-        background: url(back_1.gif) no-repeat center center/cover;
-    }
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .hero h2 {
-        font-size: 2rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-        color: white;
-    }
-
-    .container {
-        padding: 0 15px;
-    }
-
-    .event-card img {
-        height: 200px;
-    }
-
-    /* Extra Small Devices */
-    .container {
-        padding: 0 1rem;
-    }
-
-    .hero h1 {
-        font-size: 2.2rem;
-    }
-
-    .hero h2 {
-        font-size: 1.8rem;
-    }
-
-    .event-info h3 {
-        font-size: 1.2rem;
-    }
-
-    .ticket-price .amount {
-        font-size: 2.5rem;
-    }
-
-    .info-item {
-        padding: 1.5rem;
-    }
-
-    .menu-btn {
-        margin-right: 0;
-    }
-
-    footer {
+    .event-info {
         padding: 1.5rem;
     }
 }
 
-/* Tablet and Desktop Styles */
-@media (min-width: 768px) {
-    .menu-btn {
-        display: none;
-    }
-    
-    .nav-links {
-        display: flex;
-        position: static;
-        width: auto;
-        background: none;
-        padding: 0;
-        flex-direction: row;
-        gap: 2rem;
-        margin-right: -135px;
-    }
-    
-    .logo img {
-        height: 50px;
-        margin-left: -125px;
-    }
-    
-    nav h1 {
-        margin-left: -45px;
-        margin-top: -40px;
-    }
-    
-    .hero h1 {
-        font-size: 9rem;
-    }
-    
-    .hero h2 {
-        font-size: 5rem;
-        margin-top: -69px;
-        margin-left: -283px;
-    }
-}
-
-/* Fix touch targets on mobile */
-@media (hover: none) {
-    .nav-links a,
-    .book-btn,
-    .submit-btn,
-    .social-links a {
-        padding: 1rem;
-        min-height: 44px;
-    }
-}
-
-/* iOS Safari 100vh fix */
-@supports (-webkit-touch-callout: none) {
-    .hero {
-        height: -webkit-fill-available;
-    }
-}
-
-/* Error Message */
-.error-message {
-    background: #ffebee;
-    color: #c62828;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Password Input */
-.form-group input[type="password"] {
-    font-family: 'Arial', sans-serif;
-    letter-spacing: 0.1em;
-}
-
-/* Contact Page Specific Styles */
+/* Contact Section */
 .contact-section {
     padding: 10rem 0 5rem;
     background: url(back.png) no-repeat center center/cover;
@@ -1328,4 +889,321 @@ footer {
 .events-cta .cta-button:hover {
     transform: translateY(-3px);
     background: #270160;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        margin-right: 0;
+    }
+
+    .menu-btn {
+        display: block;
+        margin-right: 1rem;
+    }
+
+    .logo img {
+        margin-left: 0;
+        height: 40px;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2.5rem;
+        margin: 0;
+        margin-bottom: 2rem;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        padding: 0;
+    }
+
+    .event-card {
+        margin: 0 1rem 1.5rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 1rem;
+        text-align: center;
+        gap: 1rem;
+    }
+
+    .events-section,
+    .tickets-section,
+    .contact-section,
+    .login-section {
+        padding: 6rem 0 3rem;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .contact-info {
+        grid-template-columns: 1fr;
+        order: 2;
+    }
+
+    .tickets-grid {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .ticket-card.featured {
+        transform: none;
+    }
+
+    footer {
+        padding: 20px;
+    }
+
+    .cta-button,
+    .book-btn,
+    .submit-btn {
+        width: 100%;
+        text-align: center;
+        padding: 0.8rem 1.5rem;
+    }
+
+    /* Navigation */
+    nav .container {
+        padding: 0.5rem;
+    }
+
+    .logo img {
+        height: 35px;
+        margin-left: -15px;
+    }
+
+    nav h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        margin-left: 32px;
+        margin-top: -32px;
+        color: white;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 59px;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 7.5rem;
+        gap: 2rem;
+        z-index: 999;
+    }
+
+    /* Hero Section */
+    .hero h1 {
+        font-size: 2.8rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+        margin: 0 auto 1.5rem;
+        text-align: center;
+    }
+
+    /* Cards and Grids */
+    .event-grid,
+    .tickets-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .event-card,
+    .ticket-card {
+        margin: 0;
+    }
+
+    .ticket-card.featured {
+        transform: none;
+        border-width: 3px;
+    }
+
+    /* Forms */
+    .form-group input,
+    .form-group textarea {
+        padding: 1rem;
+        font-size: 16px; /* Prevents zoom on iOS */
+    }
+
+    .submit-btn,
+    .book-btn,
+    .cta-button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1rem;
+    }
+
+    /* Sections Spacing */
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+    .events-section,
+    .tickets-section,
+    .contact-section,
+    .login-section {
+        padding: 5rem 1rem 3rem;
+        background: url(back.png) no-repeat center center/cover;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        position: relative;
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        overflow: hidden;
+        background: url(back_1.gif) no-repeat center center/cover;
+    }
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        color: white;
+    }
+
+    .container {
+        padding: 0 15px;
+    }
+
+    .event-card img {
+        height: 200px;
+    }
+
+    /* Extra Small Devices */
+    .container {
+        padding: 0 1rem;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .hero h2 {
+        font-size: 2.8rem;
+    }
+
+    .event-info h3 {
+        font-size: 1.2rem;
+    }
+
+    .ticket-price .amount {
+        font-size: 2.5rem;
+    }
+
+    .info-item {
+        padding: 1.5rem;
+    }
+
+    .menu-btn {
+        margin-right: 0;
+    }
+
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+    .menu-btn {
+        display: none;
+    }
+    
+    .nav-links {
+        display: flex;
+        position: static;
+        width: auto;
+        background: none;
+        padding: 0;
+        flex-direction: row;
+        gap: 2rem;
+        margin-right: -135px;
+    }
+    
+    .logo img {
+        height: 50px;
+        margin-left: -125px;
+    }
+    
+    nav h1 {
+        margin-left: -45px;
+        margin-top: -40px;
+    }
+    
+    .hero h1 {
+        font-size: 9rem;
+    }
+    
+    .hero h2 {
+        font-size: 5rem;
+        margin-top: -69px;
+        margin-left: -283px;
+    }
+}
+
+/* Fix touch targets on mobile */
+@media (hover: none) {
+    .nav-links a,
+    .book-btn,
+    .submit-btn,
+    .social-links a {
+        padding: 1rem;
+        min-height: 44px;
+    }
+}
+
+/* iOS Safari 100vh fix */
+@supports (-webkit-touch-callout: none) {
+    .hero {
+        height: -webkit-fill-available;
+    }
+}
+
+/* Error Message */
+.error-message {
+    background: #ffebee;
+    color: #c62828;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Password Input */
+.form-group input[type="password"] {
+    font-family: 'Arial', sans-serif;
+    letter-spacing: 0.1em;
 }
