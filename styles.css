@@ -464,7 +464,9 @@ footer {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     gap: 2.5rem;
-    margin-top: 3rem;
+    margin-top: -100px;
+    margin-right: 200px;
+    margin-left: 130px;
     padding: 0 1rem;
 }
 
@@ -497,30 +499,29 @@ footer {
 
 .event-date {
     position: absolute;
-    top: 20px;
-    right: 20px;
-    background: linear-gradient(135deg, #320178, #27005D);
-    color: white;
-    padding: 12px;
-    border-radius: 12px;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 10px;
+    border-radius: 5px;
     text-align: center;
-    box-shadow: 0 4px 15px rgba(50, 1, 120, 0.2);
-    backdrop-filter: blur(5px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-date .day {
-    font-size: 1.8rem;
-    font-weight: 700;
     display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
     line-height: 1;
-    margin-bottom: 4px;
 }
 
 .event-date .month {
-    font-size: 0.9rem;
+    display: block;
+    font-size: 14px;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 500;
+    color: #666;
+    margin-top: 2px;
 }
 
 .event-info {
@@ -986,13 +987,13 @@ footer {
 
     .logo img {
         height: 35px;
-        margin-left: -15px;
+        margin-left: -81px;
     }
 
     nav h1 {
         font-size: 1.2rem;
         margin: 0;
-        margin-left: 32px;
+        margin-left: -36px;
         margin-top: -32px;
         color: white;
     }
@@ -1065,7 +1066,7 @@ footer {
     .tickets-section,
     .contact-section,
     .login-section {
-        padding: 5rem 1rem 3rem;
+        padding: 7rem -18rem 19rem;
         background: url(back.png) no-repeat center center/cover;
     }
 }
@@ -1128,7 +1129,7 @@ footer {
     }
 
     .menu-btn {
-        margin-right: 0;
+        margin-right: -82px;
     }
 
     footer {
@@ -1159,7 +1160,7 @@ footer {
     }
     
     nav h1 {
-        margin-left: -45px;
+        margin-left: -60px;
         margin-top: -40px;
     }
     

@@ -171,4 +171,37 @@ document.addEventListener('DOMContentLoaded', () => {
             this.reset();
         });
     }
+
+    // Enhanced Book Button Handling
+    document.querySelectorAll('.book-btn').forEach(button => {
+        button.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Add click animation
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+
+            const eventTitle = this.closest('.event-info').querySelector('h3').textContent;
+            const eventDate = this.closest('.event-card').querySelector('.event-date').textContent;
+            
+            // Show booking confirmation
+            const confirmed = confirm(`Confirm booking for:\n${eventTitle}\n${eventDate}`);
+            
+            if (confirmed) {
+                // Add loading state
+                const originalText = this.innerHTML;
+                this.innerHTML = '<span>Processing...</span> <i class="fas fa-spinner fa-spin"></i>';
+                this.disabled = true;
+                
+                // Simulate booking process
+                setTimeout(() => {
+                    alert('Booking successful! Check your email for confirmation.');
+                    this.innerHTML = originalText;
+                    this.disabled = false;
+                }, 1500);
+            }
+        });
+    });
 });
