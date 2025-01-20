@@ -792,6 +792,7 @@ footer {
     .ticket-item {
         flex-direction: column;
         text-align: center;
+        padding: 17px 18px;
     }
 
     .ticket-details {
