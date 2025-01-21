@@ -1,207 +1,238 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Smooth scrolling
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
-            });
-        });
-    });
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', initApp);
 
-    // Mobile menu toggle
+function initApp() {
+    initNavigation();
+    initScrollEffects();
+    initForms();
+    initVideoHandling();
+    initBookingSystem();
+}
+
+function initNavigation() {
+    // Mobile menu handling
     const menuBtn = document.querySelector('.menu-btn');
     const navLinks = document.querySelector('.nav-links');
-    let menuOpen = false;
 
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuBtn.classList.toggle('active');
-    }); 
-    
-    // Close menu when clicking a link
-    const navLinksArray = document.querySelectorAll('.nav-links a');
-    navLinksArray.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuBtn.classList.remove('active');
-        });
-    });
+    if (menuBtn) {
+        menuBtn.addEventListener('click', () => toggleMenu(menuBtn, navLinks));
+    }
 
     // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!navLinks.contains(event.target) && !menuBtn.contains(event.target)) {
-            navLinks.classList.remove('active');
+    document.addEventListener('click', (event) => {
+        if (!navLinks?.contains(event.target) && !menuBtn?.contains(event.target)) {
+            navLinks?.classList.remove('active');
         }
     });
 
-    // Scroll animations
-    const observerOptions = {
-        threshold: 0.1
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, observerOptions);
-
-    document.querySelectorAll('.event-card').forEach(card => {
-        observer.observe(card);
+    // Smooth scrolling
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', handleSmoothScroll);
     });
+}
 
-    // Add smooth reveal animations
-    const revealElements = document.querySelectorAll('.section-title, .event-card, .ticket-card, .info-item');
-    
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = 1;
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
+function toggleMenu(btn, nav) {
+    nav.classList.toggle('active');
+    const isExpanded = nav.classList.contains('active');
+    btn.setAttribute('aria-expanded', isExpanded);
+}
 
-    revealElements.forEach(element => {
-        element.style.opacity = 0;
+function handleSmoothScroll(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+    }
+}
+
+function initScrollEffects() {
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver(
+        (entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        },
+        { threshold: 0.1 }
+    );
+
+    // Observe elements
+    const animatedElements = document.querySelectorAll(
+        '.section-title, .event-card, .ticket-card, .info-item'
+    );
+
+    animatedElements.forEach(element => {
+        element.style.opacity = '0';
         element.style.transform = 'translateY(20px)';
         element.style.transition = 'all 0.6s ease-out';
-        revealObserver.observe(element);
+        observer.observe(element);
     });
+}
 
-    // Fix mobile menu behavior
-    document.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            document.querySelector('.navbar').style.background = 'rgba(26, 26, 26, 0.95)';
-        } else {
-            document.querySelector('.navbar').style.background = 'rgba(26, 26, 26, 0.8)';
-        }
+function initForms() {
+    // Form validation
+    document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', validateForm);
     });
+}
 
-    // Contact Form Handling
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
-            
-            // Basic form validation
-            if (name && email && message) {
-                // Here you would typically send this data to your server
-                alert('Thank you for your message! We will get back to you soon.');
-                contactForm.reset();
-            }
-        });
-    }
-
-    // Ticket Selection Handling
-    document.querySelectorAll('.ticket-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const ticketType = this.closest('.ticket-card').querySelector('h3').textContent;
-            const ticketPrice = this.closest('.ticket-card').querySelector('.price .amount').textContent;
-            
-            // You would typically integrate this with a payment gateway
-            alert(`Selected ${ticketType} ticket for EGP ${ticketPrice}`);
-        });
-    });
-
-    // Ensure video plays
-    const video = document.getElementById('bgVideo');
+function validateForm(event) {
+    event.preventDefault();
+    const form = event.target;
+    const inputs = form.querySelectorAll('input[required]');
+    const errorMessage = document.getElementById('error-message');
     
-    // Function to handle video loading
-    function handleVideo() {
-        video.play().catch(function(error) {
-            console.log("Video autoplay failed:", error);
-            // Add fallback class if video fails
-            video.closest('.hero').classList.add('video-fallback');
-        });
+    // Check required fields
+    const isValid = Array.from(inputs).every(input => input.value.trim());
+    
+    if (!isValid) {
+        showError(errorMessage, 'Please fill in all required fields');
+        return false;
     }
 
-    // Handle video loading
-    if (video) {
-        video.addEventListener('loadeddata', handleVideo);
-        
-        // Reload video when it ends
-        video.addEventListener('ended', function() {
-            video.play();
-        });
-
-        // Handle visibility changes
-        document.addEventListener('visibilitychange', function() {
-            if (document.hidden) {
-                video.pause();
-            } else {
-                video.play();
-            }
-        });
-
-        // Handle video errors
-        video.addEventListener('error', function(e) {
-            console.error('Error loading video:', e);
-            // Fallback to static background if video fails
-            video.style.display = 'none';
-            video.closest('.hero').style.backgroundImage = "url('party-zone-poster.jpg')";
-        });
+    // Password validation if present
+    const password = form.querySelector('input[type="password"]');
+    if (password && password.value.length < 6) {
+        showError(errorMessage, 'Password must be at least 6 characters');
+        return false;
     }
 
-    // Create Event Form Handling
-    const createEventForm = document.getElementById('createEventForm');
-    if (createEventForm) {
-        createEventForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data
-            const formData = new FormData(this);
-            
-            // Here you would typically send this data to your server
-            console.log('Event Creation Data:', Object.fromEntries(formData));
-            
-            // Show success message
-            alert('Event created successfully!');
-            
-            // Reset form
-            this.reset();
-        });
-    }
+    // Submit form if validation passes
+    form.submit();
+    return true;
+}
 
-    // Enhanced Book Button Handling
-    document.querySelectorAll('.book-btn').forEach(button => {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            // Add click animation
-            this.style.transform = 'scale(0.95)';
-            setTimeout(() => {
-                this.style.transform = '';
-            }, 150);
+function showError(element, message, duration = 3000) {
+    if (!element) return;
+    
+    element.textContent = message;
+    element.style.display = 'block';
+    
+    setTimeout(() => {
+        element.style.display = 'none';
+    }, duration);
+}
 
-            const eventTitle = this.closest('.event-info').querySelector('h3').textContent;
-            const eventDate = this.closest('.event-card').querySelector('.event-date').textContent;
-            
-            // Show booking confirmation
-            const confirmed = confirm(`Confirm booking for:\n${eventTitle}\n${eventDate}`);
-            
-            if (confirmed) {
-                // Add loading state
-                const originalText = this.innerHTML;
-                this.innerHTML = '<span>Processing...</span> <i class="fas fa-spinner fa-spin"></i>';
-                this.disabled = true;
-                
-                // Simulate booking process
-                setTimeout(() => {
-                    alert('Booking successful! Check your email for confirmation.');
-                    this.innerHTML = originalText;
-                    this.disabled = false;
-                }, 1500);
-            }
+function initVideoHandling() {
+    const video = document.getElementById('bgVideo');
+    if (!video) return;
+
+    const handleVideoPlay = () => {
+        video.play().catch(error => {
+            console.warn('Video autoplay failed:', error);
+            video.closest('.hero')?.classList.add('video-fallback');
         });
+    };
+
+    video.addEventListener('loadeddata', handleVideoPlay);
+    video.addEventListener('ended', () => video.play());
+    
+    // Handle visibility changes
+    document.addEventListener('visibilitychange', () => {
+        document.hidden ? video.pause() : video.play();
     });
-});
+}
+
+function initBookingSystem() {
+    document.querySelectorAll('.book-btn').forEach(button => {
+        button.addEventListener('click', handleBooking);
+    });
+}
+
+async function handleBooking(e) {
+    e.preventDefault();
+    const button = e.currentTarget;
+    const eventInfo = getEventInfo(button);
+    
+    if (await confirmBooking(eventInfo)) {
+        await processBooking(button);
+    }
+}
+
+function getEventInfo(button) {
+    const eventCard = button.closest('.event-card');
+    return {
+        title: eventCard.querySelector('.event-info h3')?.textContent,
+        date: eventCard.querySelector('.event-date')?.textContent
+    };
+}
+
+function confirmBooking(eventInfo) {
+    return new Promise(resolve => {
+        resolve(confirm(`Confirm booking for:\n${eventInfo.title}\n${eventInfo.date}`));
+    });
+}
+
+async function processBooking(button) {
+    const originalText = button.innerHTML;
+    
+    try {
+        button.innerHTML = '<span>Processing...</span> <i class="fas fa-spinner fa-spin"></i>';
+        button.disabled = true;
+        
+        // Simulate API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        alert('Booking successful! Check your email for confirmation.');
+    } catch (error) {
+        alert('Booking failed. Please try again.');
+        console.error('Booking error:', error);
+    } finally {
+        button.innerHTML = originalText;
+        button.disabled = false;
+    }
+}
+
+// Forgot Password Functions
+function showForgotPassword(event) {
+    event.preventDefault();
+    const modal = document.getElementById('forgotPasswordModal');
+    modal.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeForgotPassword() {
+    const modal = document.getElementById('forgotPasswordModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
+
+async function handleResetPassword(event) {
+    event.preventDefault();
+    const email = document.getElementById('resetEmail').value;
+    const errorMessage = document.getElementById('error-message');
+    
+    try {
+        // Show loading state
+        const submitBtn = event.target.querySelector('button');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<span>Sending...</span>';
+        submitBtn.disabled = true;
+
+        // Simulate API call - Replace with your actual API call
+        await new Promise(resolve => setTimeout(resolve, 1500));
+        
+        // Show success message
+        alert('Password reset link has been sent to your email');
+        closeForgotPassword();
+        
+    } catch (error) {
+        showError(errorMessage, 'Failed to send reset link. Please try again.');
+    } finally {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+    }
+}
+
+// Close modal when clicking outside
+window.onclick = function(event) {
+    const modal = document.getElementById('forgotPasswordModal');
+    if (event.target === modal) {
+        closeForgotPassword();
+    }
+}
