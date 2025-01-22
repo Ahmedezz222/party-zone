@@ -523,13 +523,8 @@ footer {
 
 .event-date {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 10px;
-    border-radius: 5px;
+    left: 85px;
     text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .event-date .day {
@@ -2333,5 +2328,940 @@ footer {
     
     .contact-button-container {
         margin-top: 1.5rem;
+    }
+}
+
+/* Payment Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    position: relative;
+}
+
+.close-modal {
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.payment-details {
+    margin-top: 20px;
+}
+
+.payment-methods {
+    margin: 20px 0;
+}
+
+.payment-method {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.payment-method.selected {
+    border-color: #007bff;
+    background: #f0f7ff;
+}
+
+.confirm-btn {
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.confirm-btn:disabled {
+    background: #ccc;
+}
+
+/* Enhanced Payment Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: relative;
+    background-color: white;
+    margin: 5vh auto;
+    padding: 2rem;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.close-modal {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    font-size: 1.5rem;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s;
+    z-index: 1;
+}
+
+.close-modal:hover {
+    color: #333;
+}
+
+.payment-details {
+    margin-top: 1.5rem;
+}
+
+.order-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.price-breakdown {
+    margin-top: 1.5rem;
+    border-top: 1px solid #dee2e6;
+    padding-top: 1rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    color: #555;
+}
+
+.price-row.total {
+    border-top: 2px solid #dee2e6;
+    padding-top: 1rem;
+    margin-top: 1rem;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.payment-methods {
+    margin: 2rem 0;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.payment-method i {
+    margin-right: 0.8rem;
+    font-size: 1.2rem;
+    color: #320178;
+}
+
+.payment-method:hover {
+    border-color: #320178;
+    background: #f8f9fa;
+}
+
+.payment-method.selected {
+    border-color: #320178;
+    background: #f0f7ff;
+}
+
+.payment-form .form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.terms-group {
+    margin: 1.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.terms-group label {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.confirm-btn {
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(135deg, #320178, #27005D);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.confirm-btn:hover {
+    background: linear-gradient(135deg, #27005D, #320178);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(50, 1, 120, 0.2);
+}
+
+.confirm-btn:disabled {
+    background: #ccc;
+    transform: none;
+    box-shadow: none;
+    cursor: not-allowed;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+        width: 100%;
+        max-width: none;
+    }
+
+    .payment-method {
+        padding: 0.8rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .payment-details {
+        margin-top: 1rem;
+    }
+
+    .order-summary {
+        padding: 1rem;
+    }
+}
+
+/* iOS specific fixes for modal scroll */
+@supports (-webkit-touch-callout: none) {
+    .modal-content {
+        max-height: -webkit-fill-available;
+    }
+}
+
+/* ...existing code... */
+
+/* Enhanced Payment Modal Styles */
+.event-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+}
+
+.event-summary-content {
+    display: grid;
+    gap: 0.8rem;
+    color: #555;
+}
+
+.event-summary-content i {
+    color: #320178;
+    width: 20px;
+}
+
+.ticket-details {
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.payment-method {
+    position: relative;
+    padding: 1.2rem;
+}
+
+.payment-info {
+    display: block;
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 0.3rem;
+    margin-left: 1.8rem;
+}
+
+.terms-section {
+    margin: 2rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.security-note {
+    text-align: center;
+    color: #666;
+    margin: 1rem 0;
+    font-size: 0.9rem;
+}
+
+.security-note i {
+    color: #320178;
+    margin-right: 0.5rem;
+}
+
+/* ...existing code... */
+
+/* Enhanced Payment Modal Mobile Styles */
+@media (max-width: 768px) {
+    .modal-content {
+        margin: 0;
+        padding: 1rem;
+        width: 100%;
+        height: 100%;
+        border-radius: 0;
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+
+    .close-modal {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: rgba(255, 255, 255, 0.9);
+        padding: 0.5rem;
+        border-radius: 50%;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        z-index: 1001;
+    }
+
+    .event-summary,
+    .order-summary {
+        margin: 1rem -1rem;
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .payment-method {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 1rem;
+    }
+
+    .payment-info {
+        margin: 0.5rem 0 0;
+        padding-left: 1.8rem;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .terms-section {
+        margin: 1rem -1rem;
+        padding: 1rem;
+        border-radius: 0;
+    }
+
+    .terms-group {
+        gap: 0.8rem;
+    }
+
+    .terms-group label {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .security-note {
+        padding: 1rem;
+        margin: 1rem -1rem;
+        background: #f8f9fa;
+    }
+
+    /* Improve touch targets */
+    .payment-method,
+    .confirm-btn,
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"] {
+        min-height: 44px;
+    }
+
+    .payment-method {
+        margin-bottom: 0.8rem;
+    }
+
+    /* Add spacing between sections */
+    .payment-details > * {
+        margin-bottom: 1.5rem;
+    }
+
+    /* Improve form readability */
+    .form-group input {
+        font-size: 16px;
+        padding: 1rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    /* Price breakdown improvements */
+    .price-breakdown {
+        font-size: 0.9rem;
+    }
+
+    .price-row.total {
+        font-size: 1rem;
+        margin-top: 1rem;
+    }
+
+    /* Modal header */
+    .modal-content h2,
+    .modal-content h3 {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    /* Sticky confirm button */
+    .confirm-btn {
+        position: sticky;
+        bottom: 0;
+        margin: 1rem -1rem -1rem;
+        border-radius: 0;
+        padding: 1rem;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .payment-method {
+        padding: 0.8rem;
+    }
+
+    .payment-info {
+        font-size: 0.8rem;
+    }
+
+    .event-summary-content,
+    .ticket-details {
+        font-size: 0.9rem;
+    }
+
+    /* Adjust spacing */
+    .payment-details > * {
+        margin-bottom: 1.2rem;
+    }
+
+    /* Make checkboxes easier to tap */
+    .terms-group input[type="checkbox"] {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .modal-content {
+        padding-bottom: env(safe-area-inset-bottom);
+    }
+
+    .confirm-btn {
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+}
+
+/* ...existing code... */
+
+/* Enhanced Payment Modal Styles - Desktop */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 20px auto;
+    padding: 2.5rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 600px;
+    position: relative;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+.event-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin-bottom: 2rem;
+}
+
+.event-summary-content {
+    display: grid;
+    gap: 1rem;
+}
+
+.event-summary-content p {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #444;
+    font-size: 1.1rem;
+}
+
+.event-summary-content i {
+    color: #320178;
+    width: 20px;
+    font-size: 1.2rem;
+}
+
+.order-summary {
+    background: #fff;
+    border: 1px solid #eee;
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+}
+
+.price-breakdown {
+    margin-top: 1.5rem;
+}
+
+.price-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.price-row.total {
+    border-top: 2px solid #dee2e6;
+    border-bottom: none;
+    margin-top: 0.5rem;
+    padding-top: 1rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #320178;
+}
+
+.payment-methods {
+    margin: 2rem 0;
+}
+
+.payment-method {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 1.2rem;
+    margin-bottom: 1rem;
+    border: 2px solid #eee;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.payment-method i {
+    font-size: 1.5rem;
+    color: #320178;
+    margin-right: 1rem;
+}
+
+.payment-method .payment-info {
+    margin-left: auto;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.payment-method:hover {
+    border-color: #320178;
+    background: #f8f9fa;
+}
+
+.payment-method.selected {
+    border-color: #320178;
+    background: #f0f7ff;
+}
+
+.terms-section {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin: 2rem 0;
+}
+
+.terms-group {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.terms-group input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    margin-top: 0.2rem;
+}
+
+.security-note {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    color: #666;
+    margin: 1.5rem 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.security-note i {
+    color: #320178;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .modal {
+        padding: 0;
+    }
+
+    .modal-content {
+        margin: 0;
+        border-radius: 0;
+        min-height: 100vh;
+        padding: 1.5rem;
+        max-width: none;
+    }
+
+    .close-modal {
+        position: fixed;
+        top: 1rem;
+        right: 1rem;
+        background: white;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .event-summary,
+    .order-summary {
+        border-radius: 12px;
+        padding: 1.2rem;
+        margin: 1rem 0;
+    }
+
+    .event-summary-content p {
+        font-size: 1rem;
+    }
+
+    .payment-method {
+        padding: 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .payment-method .payment-info {
+        margin-left: 2.5rem;
+    }
+
+    .terms-section {
+        margin: 1.5rem -1.5rem;
+        border-radius: 0;
+    }
+
+    .terms-group label {
+        font-size: 0.9rem;
+        line-height: 1.4;
+    }
+
+    .confirm-btn {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        margin: 0;
+        border-radius: 0;
+        padding: 1.2rem;
+        z-index: 10;
+    }
+
+    /* Add padding to bottom for fixed button */
+    .modal-content {
+        padding-bottom: calc(1.5rem + 70px);
+    }
+
+    /* Form fields optimization for mobile */
+    .form-group input {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 1rem;
+    }
+
+    .event-summary,
+    .order-summary {
+        padding: 1rem;
+        margin: 0.8rem 0;
+    }
+
+    .payment-method i {
+        font-size: 1.3rem;
+    }
+
+    .terms-section {
+        margin: 1rem -1rem;
+        padding: 1rem;
+    }
+
+    .security-note {
+        font-size: 0.85rem;
+        margin: 1rem 0;
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .modal-content {
+        padding-bottom: calc(1.5rem + 70px + env(safe-area-inset-bottom));
+    }
+
+    .confirm-btn {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+}
+
+/* ...existing code... */
+
+/* Enhanced Payment Modal Mobile Styles */
+@media (max-width: 768px) {
+    .modal {
+        padding: 0;
+        align-items: flex-end;
+    }
+
+    .modal-content {
+        margin: 0;
+        border-radius: 35px 35px 35px 35px;
+        min-height: 100vh;
+        padding: 1.5rem;
+        max-width: none;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        overflow-y: auto;
+        max-height: 90vh;
+    }
+
+    .close-modal {
+        position: sticky;
+        top: 0;
+        right: 0;
+        background: white;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        margin-left: auto;
+        margin-bottom: 1rem;
+        z-index: 1002;
+    }
+
+    .event-summary,
+    .order-summary {
+        margin: 1rem 0;
+        padding: 1rem;
+    }
+
+    .payment-method {
+        padding: 1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .payment-info {
+        font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select {
+        height: 48px;
+        font-size: 16px;
+        padding: 0.8rem;
+    }
+
+    .form-group label {
+        font-size: 0.9rem;
+    }
+
+    .terms-section {
+        margin: 1.5rem 0;
+        padding: 1rem;
+    }
+
+    .terms-group {
+        gap: 0.5rem;
+    }
+
+    .terms-group label {
+        font-size: 0.85rem;
+        line-height: 1.4;
+    }
+
+    .security-note {
+        font-size: 0.85rem;
+        padding: 0.8rem;
+        margin: 1rem 0;
+    }
+
+    .confirm-btn {
+        position: sticky;
+        bottom: 0;
+        margin: 1rem -1.5rem -1.5rem;
+        padding: 1rem;
+        border-radius: 0;
+        width: calc(100% + 3rem);
+        background: linear-gradient(135deg, #320178, #27005D);
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Form field adjustments */
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    #creditCardFields .form-row {
+        gap: 0.8rem;
+    }
+
+    /* Better spacing for small screens */
+    .payment-details > * {
+        margin-bottom: 1.5rem;
+    }
+
+    .payment-details h3 {
+        font-size: 1.1rem;
+        margin-bottom: 1rem;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+    .modal-content {
+        padding: 2rem;
+    }
+
+    .event-summary-content,
+    .price-breakdown {
+        font-size: 0.9rem;
+    }
+
+    .payment-method i {
+        font-size: 1.2rem;
+    }
+
+    .confirm-btn {
+        margin: 1rem -1rem -1rem;
+        width: calc(100% + 2rem);
+    }
+}
+
+/* iOS specific fixes */
+@supports (-webkit-touch-callout: none) {
+    .modal-content {
+        padding-bottom: calc(1.5rem + env(safe-area-inset-bottom));
+    }
+
+    .confirm-btn {
+        padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+    }
+
+    /* Prevent scrolling on body when modal is open */
+    body.modal-open {
+        position: fixed;
+        width: 100%;
     }
 }

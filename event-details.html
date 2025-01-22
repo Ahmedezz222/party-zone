@@ -86,6 +86,128 @@
             </div>
         </div>
     </footer>
+    
+    <!-- Payment Confirmation Modal -->
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Confirm Purchase</h2>
+            <div class="payment-details">
+                <!-- Event Details -->
+                <div class="event-summary">
+                    <h3>Event Details</h3>
+                    <div class="event-summary-content">
+                        <p><i class="fas fa-calendar"></i> <span class="event-date"></span></p>
+                        <p><i class="fas fa-clock"></i> <span class="event-time"></span></p>
+                        <p><i class="fas fa-map-marker-alt"></i> <span class="event-location"></span></p>
+                    </div>
+                </div>
+
+                <!-- Order Summary -->
+                <div class="order-summary">
+                    <h3>Order Summary</h3>
+                    <div class="ticket-details">
+                        <p class="ticket-info"></p>
+                        <p class="ticket-quantity">Quantity: 1</p>
+                    </div>
+                    <div class="price-breakdown">
+                        <div class="price-row">
+                            <span>Ticket Price</span>
+                            <span class="subtotal"></span>
+                        </div>
+                        <div class="price-row">
+                            <span>Service Fee (5%)</span>
+                            <span class="service-fee"></span>
+                        </div>
+                        <div class="price-row vat">
+                            <span>VAT (14%)</span>
+                            <span class="vat-amount"></span>
+                        </div>
+                        <div class="price-row total">
+                            <strong>Total Amount</strong>
+                            <strong class="total-amount"></strong>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="payment-methods">
+                    <h3>Select Payment Method</h3>
+                    <button class="payment-method" data-method="credit-card">
+                        <i class="fas fa-credit-card"></i> Credit Card
+                        <span class="payment-info">Visa, MasterCard</span>
+                    </button>
+                    <button class="payment-method" data-method="vodafone-cash">
+                        <i class="fas fa-mobile-alt"></i> Vodafone Cash
+                        <span class="payment-info">Instant Transfer</span>
+                    </button>
+                    <button class="payment-method" data-method="fawry">
+                        <i class="fas fa-store"></i> Fawry
+                        <span class="payment-info">Pay at nearest outlet</span>
+                    </button>
+                </div>
+
+                <!-- Billing Information -->
+                <form id="paymentForm" class="payment-form">
+                    <h3>Billing Information</h3>
+                    <div class="form-group">
+                        <input type="text" id="fullName" required>
+                        <label for="fullName">Full Name</label>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="email" id="email" required>
+                            <label for="email">Email Address</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" id="phone" required>
+                            <label for="phone">Phone Number</label>
+                        </div>
+                    </div>
+                    
+                    <!-- Credit Card Fields -->
+                    <div id="creditCardFields" style="display: none;">
+                        <h4>Card Details</h4>
+                        <div class="form-group">
+                            <input type="text" id="cardNumber" pattern="\d*" maxlength="16">
+                            <label for="cardNumber">Card Number</label>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" id="expiry" maxlength="5" placeholder="MM/YY">
+                                <label for="expiry">Expiry Date</label>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="cvv" maxlength="3">
+                                <label for="cvv">CVV</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Terms and Privacy -->
+                    <div class="terms-section">
+                        <div class="terms-group">
+                            <input type="checkbox" id="terms" required>
+                            <label for="terms">I agree to the Terms & Conditions and Privacy Policy</label>
+                        </div>
+                        <div class="terms-group">
+                            <input type="checkbox" id="newsletter">
+                            <label for="newsletter">Send me updates about future events</label>
+                        </div>
+                    </div>
+
+                    <p class="security-note">
+                        <i class="fas fa-lock"></i> Your payment information is secure and encrypted
+                    </p>
+
+                    <button type="submit" id="confirmPayment" class="confirm-btn">
+                        Confirm Payment
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
