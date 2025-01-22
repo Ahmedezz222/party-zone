@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-    width: min(60%, 1020px);
+    width: min(90%, 1020px);
     margin-inline: auto;
     padding-inline: clamp(1rem, 3vw, 2rem);
     position: relative;
@@ -29,6 +29,12 @@ body {
     padding-inline: clamp(1rem, 3vw, 2rem);
 }
 
+.container-1 {
+    width: min(90%, 1200px);
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
 /* Section spacing utilities */
 .section-padding {
     padding-block: clamp(3rem, 8vh, 8rem);
@@ -41,8 +47,64 @@ body {
 @media (max-width: 768px) {
     .container,
     .container-narrow,
+    .container-wide,
+    .container-1 {
+        width: 95%;
+        padding: 0.5rem;
+        margin: 0 auto;
+    }
+
+    .events-section .container {
+        width: 100%;
+        padding: 1rem;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 1rem 0;
+        padding: 0;
+    }
+
+    .event-card {
+        margin: 0;
+        width: 100%;
+    }
+
+    .container,
+    .container-narrow,
     .container-wide {
         padding-inline: 1rem;
+    }
+
+    nav .container {
+        width: 100%;
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .hero .container {
+        width: 100%;
+        padding: 0 1rem;
+        margin-top: 60px;
+    }
+}
+
+@media (max-width: 480px) {
+    .container,
+    .container-1 {
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    .events-section .container {
+        padding: 0.5rem;
+    }
+
+    .event-grid {
+        margin: 0.5rem 0;
     }
 }
 
@@ -274,15 +336,15 @@ nav h1 {
 }
 
 .section-title_1 {
-    text-align: center;
-    margin-bottom: 3rem;
-    font-size: 2.5rem;
-    color: rgba(0, 0, 0, 0.95);
-    opacity: 1;
-    transform: translateY(-77px);
-    transition: 0.6s ease-out;
-    margin-left: 650px;
-    padding: 54px 84px 75px 0px;
+     text-align: center; 
+     margin-bottom: 3rem; 
+     font-size: 2.5rem; 
+     color: rgba(0, 0, 0, 0.95); 
+     opacity: 1; 
+     transform: translateY(-77px); 
+     transition: 0.6s ease-out; 
+     margin-left: 650px; 
+     padding: 54px 84px 75px 0px; 
 }
 
 .contact-container {
@@ -450,7 +512,7 @@ footer {
 
 .event-card img {
     width: 100%;
-    height: 280px;
+    height: 466px;
     object-fit: cover;
     transition: transform 0.5s ease;
 }
@@ -1083,6 +1145,16 @@ footer {
         margin-right: 40px;
         padding: 0px 0px 0px 32px;
     }
+    .section-title_1 {
+    text-align: center;
+    margin-bottom: 3rem;
+    font-size: 2.5rem;
+    color: rgba(0, 0, 0, 0.95);
+    opacity: 1;
+    transform: translateY(-39px);
+    transition: 0.6s ease-out;
+    margin-left: 45px;
+}
 
     .container {
         padding: 0 15px;
@@ -1410,4 +1482,433 @@ footer {
     transition: 0.6s ease-out;
     margin-right: 5000px;
     
+}
+
+/* Events Section Styles */
+#events.events-section {
+    background: white;
+    padding: 4rem 0;
+}
+
+.container-1 {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+#events .section-title {
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+#events .event-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin: 2rem 0;
+}
+
+@media (max-width: 768px) {
+    .container-1 {
+        width: 95%;
+        padding: 0 0.5rem;
+    }
+    
+    #events .event-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    #events.events-section {
+        padding: 2rem 0;
+    }
+}
+
+/* Mobile Optimization */
+@media (max-width: 768px) {
+    /* Navigation fixes */
+    nav .container {
+        padding: 0.8rem 1rem;
+    }
+
+    .logo img {
+        height: 35px;
+        margin: 0;
+    }
+
+    nav h1 {
+        font-size: 1.2rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-btn {
+        margin: 0;
+        padding: 0.5rem;
+    }
+
+    /* Hero section fixes */
+    .hero h1 {
+        font-size: 2.5rem;
+        margin: 0 0 0.5rem;
+    }
+
+    .hero h2 {
+        font-size: 2rem;
+        margin: 0 0 1.5rem;
+        text-align: center;
+    }
+
+    /* Events section fixes */
+    .events-section {
+        padding: 6rem 1rem 3rem;
+    }
+
+    .event-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin: 0;
+        padding: 0;
+    }
+
+    .event-card {
+        margin: 0 auto;
+        max-width: 100%;
+    }
+
+    .section-title {
+        font-size: 2rem;
+        margin: 0 0 2rem;
+        padding: 0;
+        transform: none;
+    }
+
+    /* Container fixes */
+    .container-1 {
+        width: 100%;
+        margin: 0;
+        padding: 1rem;
+    }
+
+    /* CTA Button fixes */
+    .cta-button,
+    .book-btn {
+        width: 100%;
+        max-width: 300px;
+        margin: 0 auto;
+        display: block;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .hero {
+        height: 100vh;
+        background-position: center;
+    }
+
+    .event-card img {
+        height: 200px;
+    }
+
+    .events-section {
+        padding-top: 11rem;
+    }
+
+    nav .container {
+        padding: 0.5rem;
+    }
+
+    .nav-links.active {
+        padding: 1rem;
+    }
+
+    footer {
+        padding: 1.5rem;
+    }
+}
+
+/* Fix for iOS devices */
+@supports (-webkit-touch-callout: none) {
+    .hero,
+    .events-section {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Touch device optimization */
+@media (hover: none) {
+    .nav-links a,
+    .book-btn,
+    .cta-button {
+        padding: 0.8rem 1rem;
+        min-height: 44px;
+    }
+}
+
+/* Fixed Mobile Navigation Styles */
+@media (max-width: 768px) {
+    nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.9);
+    }
+
+    nav .container {
+        padding: 0.5rem 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        display: flex;
+        align-items: center;
+        z-index: 1001;
+    }
+
+    .logo img {
+        height: 35px;
+        margin: 0;
+    }
+
+    nav h1 {
+        font-size: 1.2rem;
+        color: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .menu-btn {
+        display: block;
+        position: relative;
+        z-index: 1001;
+        margin: 0;
+        padding: 0.5rem;
+        background: transparent;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 60px; /* Height of nav bar */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: rgba(0, 0, 0, 0.95);
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        padding: 2rem;
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .nav-links.active {
+        display: flex;
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .nav-links a {
+        color: white;
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 1rem;
+        border-radius: 8px;
+        transition: background-color 0.3s;
+    }
+
+    .nav-links a:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Adjust main content to account for fixed nav */
+    main {
+        padding-top: 60px;
+    }
+
+    /* Ensure other sections don't overlap nav */
+    .hero,
+    .events-section,
+    .contact-section {
+        margin-top: 0;
+    }
+}
+
+/* Additional small screen adjustments */
+@media (max-width: 480px) {
+    nav .container {
+        padding: 0.5rem;
+    }
+
+    .logo img {
+        height: 30px;
+    }
+
+    nav h1 {
+        font-size: 1rem;
+        margin-top: -28px;
+        margin-left: 40px;
+    }
+
+    .nav-links {
+        top: 50px;
+        height: calc(100vh - 50px);
+    }
+
+    main {
+        padding-top: 50px;
+    }
+}
+
+/* Desktop Event Card Styles */
+@media (min-width: 768px) {
+    #events .event-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    .event-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        margin: 0;
+        width: 100%;
+    }
+
+    .event-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .event-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .container-1 {
+        width: min(90%, 1200px);
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    #events .section-title {
+        font-size: 2.5rem;
+        margin-bottom: 3rem;
+        text-align: center;
+        color: #333;
+    }
+
+    .events-cta {
+        margin-top: 3rem;
+        text-align: center;
+    }
+
+    .events-cta .cta-button {
+        display: inline-block;
+        min-width: 200px;
+    }
+}
+
+/* Reset problematic margins and transforms */
+.event-grid {
+    margin-top: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.container-1 {
+    margin-right: auto;
+}
+
+/* Login and Register Pages Mobile Styles */
+@media (max-width: 768px) {
+    .login-section {
+        padding: 80px 1rem;
+        min-height: 100vh;
+        background: url(back.png) no-repeat center center/cover;
+    }
+
+    .login-container {
+        width: 90%;
+        max-width: none;
+        margin: 0 auto;
+        padding: 2rem 1.5rem;
+        border-radius: 12px;
+    }
+
+    .login-container h2 {
+        font-size: 1.8rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group input {
+        padding: 0.8rem;
+        font-size: 16px;
+        height: 48px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .submit-btn {
+        height: 48px;
+        font-size: 16px;
+    }
+
+    .register-link,
+    .form-options {
+        font-size: 14px;
+    }
+
+    /* Fix for iOS devices */
+    .login-section,
+    .register-section {
+        min-height: -webkit-fill-available;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 480px) {
+    .login-section {
+        padding: 150px 1rem;
+    }
+
+    .login-container {
+        width: 100%;
+        padding: 1.5rem 1rem;
+    }
+
+    .login-container h2 {
+        font-size: 1.5rem;
+    }
+
+    .form-group input {
+        font-size: 15px;
+    }
+
+    /* Forgot password modal adjustments */
+    .modal-content {
+        width: 90%;
+        margin: 20vh auto;
+        padding: 1.5rem;
+    }
 }
