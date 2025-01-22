@@ -2289,3 +2289,49 @@ footer {
         padding: 0 1rem;
     }
 }
+
+/* Contact Button Styles */
+.contact-button-container {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.contact-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 2rem;
+    background: linear-gradient(135deg, #320178, #27005D);
+    color: white;
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1rem;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    min-width: 200px;
+}
+
+.contact-button:hover {
+    background: linear-gradient(135deg, #27005D, #320178);
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(50, 1, 120, 0.2);
+}
+
+.contact-button i {
+    font-size: 1.1rem;
+}
+
+/* Mobile styles for contact button */
+@media (max-width: 768px) {
+    .contact-button {
+        width: 90%;
+        max-width: 300px;
+        margin: 0 auto;
+        padding: 1rem;
+    }
+    
+    .contact-button-container {
+        margin-top: 1.5rem;
+    }
+}
