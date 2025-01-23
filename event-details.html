@@ -25,7 +25,7 @@
                     <a href="contact.html">Contact</a>
                     <a href="login.html">Login</a>
                 </div>
-                <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false">
+                <button class="menu-btn" aria-label="Open menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
@@ -37,10 +37,10 @@
             <div class="container">
                 <div class="event-details-container">
                     <div class="event-image">
-                        <img src="Karim Crstiano & Fares Sokar.jpg" alt="Event Image">
+                        <img src="Karim Crstiano &amp; Fares Sokar.jpg" alt="Event Image">
                     </div>
                     <div class="event-info-detailed">
-                        <h1>Karim Crstiano & Fares Sokar</h1>
+                        <h1>Karim Crstiano &amp; Fares Sokar</h1>
                         <div class="event-meta">
                             <p><i class="fas fa-calendar"></i> February 14, 2024</p>
                             <p><i class="fas fa-clock"></i> 7:00 PM</p>
@@ -48,7 +48,7 @@
                         </div>
                         <div class="event-description">
                             <h2>Event Description</h2>
-                            <p>Join us for an amazing night with Karim Crstiano & Fares Sokar. Experience great music and unforgettable moments.</p>
+                            <p>Join us for an amazing night with Karim Crstiano &amp; Fares Sokar. Experience great music and unforgettable moments.</p>
                         </div>
                         <div class="ticket-options">
                             <h2>Ticket Options</h2>
@@ -90,16 +90,28 @@
     <!-- Payment Confirmation Modal -->
     <div id="paymentModal" class="modal">
         <div class="modal-content">
-            <span class="close-modal">&times;</span>
+            <span class="close-modal">×</span>
             <h2>Confirm Purchase</h2>
             <div class="payment-details">
                 <!-- Event Details -->
                 <div class="event-summary">
                     <h3>Event Details</h3>
                     <div class="event-summary-content">
-                        <p><i class="fas fa-calendar"></i> <span class="event-date"></span></p>
-                        <p><i class="fas fa-clock"></i> <span class="event-time"></span></p>
-                        <p><i class="fas fa-map-marker-alt"></i> <span class="event-location"></span></p>
+                        <div class="summary-row">
+                            <i class="fas fa-calendar"></i>
+                            <div class="event-date-details">
+                                <span class="date event-date">Wednesday, February 14, 2024</span>
+                                <span class="time event-time">7:00 PM</span>
+                            </div>
+                        </div>
+                        <div class="summary-row">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span class="event-location">cafe talinda house, Cairo</span>
+                        </div>
+                        <div class="summary-row">
+                            <i class="fas fa-ticket-alt"></i>
+                            <span class="ticket-info">Regular Ticket</span>
+                        </div>
                     </div>
                 </div>
 
@@ -113,19 +125,19 @@
                     <div class="price-breakdown">
                         <div class="price-row">
                             <span>Ticket Price</span>
-                            <span class="subtotal"></span>
+                            <span class="subtotal">300.00 EGP</span>
                         </div>
                         <div class="price-row">
                             <span>Service Fee (5%)</span>
-                            <span class="service-fee"></span>
+                            <span class="service-fee">15.00 EGP</span>
                         </div>
                         <div class="price-row vat">
                             <span>VAT (14%)</span>
-                            <span class="vat-amount"></span>
+                            <span class="vat-amount">42.00 EGP</span>
                         </div>
                         <div class="price-row total">
                             <strong>Total Amount</strong>
-                            <strong class="total-amount"></strong>
+                            <strong class="total-amount">357.00 EGP</strong>
                         </div>
                     </div>
                 </div>
@@ -147,20 +159,80 @@
                     </button>
                 </div>
 
+                <!-- Add this after the payment-methods div -->
+                <div class="payment-details-section credit-card-details">
+                    <h4>Credit Card Details</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="cardNumber" required="" pattern="\d*" maxlength="16">
+                            <label for="cardNumber">Card Number</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="cardName" required="">
+                            <label for="cardName">Cardholder Name</label>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <input type="text" id="expiryDate" required="" maxlength="5" placeholder="MM/YY">
+                            <label for="expiryDate">Expiry Date</label>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="cvv" required="" maxlength="3" pattern="\d*">
+                            <label for="cvv">CVV</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="payment-details-section vodafone-cash-details">
+                    <h4>Vodafone Cash Payment</h4>
+                    <div class="wallet-number">Wallet: 0123456789</div>
+                    <div class="payment-instructions">
+                        <h4>How to Pay:</h4>
+                        <ol>
+                            <li>Open your Vodafone Cash app</li>
+                            <li>Select "Pay" or "Transfer"</li>
+                            <li>Enter the wallet number shown above</li>
+                            <li>Enter the amount: <span class="total-amount"></span></li>
+                            <li>Confirm payment and save your transaction ID</li>
+                        </ol>
+                    </div>
+                    <div class="payment-note">
+                        <i class="fas fa-info-circle"></i> Your ticket will be sent once payment is confirmed
+                    </div>
+                </div>
+
+                <div class="payment-details-section fawry-details">
+                    <h4>Fawry Payment</h4>
+                    <div class="fawry-code">CODE: 123456789</div>
+                    <div class="payment-instructions">
+                        <h4>How to Pay:</h4>
+                        <ol>
+                            <li>Visit any Fawry outlet</li>
+                            <li>Show this Fawry code</li>
+                            <li>Pay the amount: <span class="total-amount"></span></li>
+                            <li>Keep your receipt</li>
+                        </ol>
+                    </div>
+                    <div class="payment-note">
+                        <i class="fas fa-info-circle"></i> Your ticket will be issued within 2 hours of payment
+                    </div>
+                </div>
+
                 <!-- Billing Information -->
                 <form id="paymentForm" class="payment-form">
                     <h3>Billing Information</h3>
                     <div class="form-group">
-                        <input type="text" id="fullName" required>
+                        <input type="text" id="fullName" required="">
                         <label for="fullName">Full Name</label>
                     </div>
                     <div class="form-row">
                         <div class="form-group">
-                            <input type="email" id="email" required>
+                            <input type="email" id="email" required="">
                             <label for="email">Email Address</label>
                         </div>
                         <div class="form-group">
-                            <input type="tel" id="phone" required>
+                            <input type="tel" id="phone" required="">
                             <label for="phone">Phone Number</label>
                         </div>
                     </div>
@@ -187,8 +259,8 @@
                     <!-- Terms and Privacy -->
                     <div class="terms-section">
                         <div class="terms-group">
-                            <input type="checkbox" id="terms" required>
-                            <label for="terms">I agree to the Terms & Conditions and Privacy Policy</label>
+                            <input type="checkbox" id="terms" required="">
+                            <label for="terms">I agree to the Terms &amp; Conditions and Privacy Policy</label>
                         </div>
                         <div class="terms-group">
                             <input type="checkbox" id="newsletter">
@@ -209,5 +281,6 @@
     </div>
 
     <script src="script.js"></script>
-</body>
-</html>
+
+
+</body></html>

@@ -7,6 +7,7 @@ function initApp() {
     initForms();
     initVideoHandling();
     initBookingSystem();
+    initEventDetailsPage();
 }
 
 function initNavigation() {
@@ -175,28 +176,31 @@ function initVideoHandling() {
 }
 
 function initBookingSystem() {
+    // Only attach event listeners to Purchase Ticket buttons
     document.querySelectorAll('.book-btn').forEach(button => {
         button.addEventListener('click', showPaymentModal);
     });
 
-    // Initialize payment modal events
     const modal = document.getElementById('paymentModal');
-    const closeBtn = modal.querySelector('.close-modal');
-    const confirmBtn = document.getElementById('confirmPayment');
-    const paymentMethods = modal.querySelectorAll('.payment-method');
+    if (!modal) return;
 
-    closeBtn.addEventListener('click', () => modal.style.display = 'none');
-    confirmBtn.addEventListener('click', handlePaymentConfirmation);
-    
-    paymentMethods.forEach(method => {
-        method.addEventListener('click', selectPaymentMethod);
-    });
+    // Close modal handlers
+    const closeBtn = modal.querySelector('.close-modal');
+    closeBtn?.addEventListener('click', () => closeModal());
 
     // Close modal when clicking outside
-    window.onclick = function(event) {
+    window.addEventListener('click', function(event) {
         if (event.target === modal) {
-            modal.style.display = 'none';
+            closeModal();
         }
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('paymentModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
     }
 }
 
@@ -318,47 +322,227 @@ function showPaymentModal(e) {
     const eventDetails = document.querySelector('.event-info-detailed');
     const modal = document.getElementById('paymentModal');
     
-    // Get ticket and event information
-    const ticketTitle = ticketType.querySelector('h3').textContent;
-    const priceText = ticketType.querySelector('.price').textContent;
-    const price = parseFloat(priceText.replace('EGP', '').trim());
+    if (!ticketType || !eventDetails || !modal) return;
+
+    // Parse event date and format it
+    const dateText = eventDetails.querySelector('.fa-calendar')?.parentNode.textContent.trim() || '';
+    const timeText = eventDetails.querySelector('.fa-clock')?.parentNode.textContent.trim() || '';
+    const date = parseDateString(dateText);
+    const formattedDate = formatEventDate(date);
     
+    // Get ticket details
+    const ticketInfo = {
+        title: ticketType.querySelector('h3')?.textContent || '',
+        price: parsePrice(ticketType.querySelector('.price')?.textContent || '0'),
+        location: eventDetails.querySelector('.fa-map-marker-alt')?.parentNode.textContent.trim() || ''
+    };
+
     // Calculate fees
-    const serviceFee = price * 0.05;
-    const vat = price * 0.14;
-    const total = price + serviceFee + vat;
+    const fees = calculateFees(ticketInfo.price);
     
-    // Update event details
-    modal.querySelector('.event-date').textContent = eventDetails.querySelector('.fa-calendar').parentNode.textContent.trim();
-    modal.querySelector('.event-time').textContent = eventDetails.querySelector('.fa-clock').parentNode.textContent.trim();
-    modal.querySelector('.event-location').textContent = eventDetails.querySelector('.fa-map-marker-alt').parentNode.textContent.trim();
-    
-    // Update price breakdown
-    modal.querySelector('.ticket-info').textContent = `Ticket Type: ${ticketTitle}`;
-    modal.querySelector('.subtotal').textContent = `${price.toFixed(2)} EGP`;
-    modal.querySelector('.service-fee').textContent = `${serviceFee.toFixed(2)} EGP`;
-    modal.querySelector('.vat-amount').textContent = `${vat.toFixed(2)} EGP`;
-    modal.querySelector('.total-amount').textContent = `${total.toFixed(2)} EGP`;
-    
-    // Show modal and reset form
+    // Update modal content
+    updateModalContent(modal, {
+        date: formattedDate,
+        time: timeText,
+        ticketInfo,
+        fees,
+        location: ticketInfo.location
+    });
+
+    // Show modal
     modal.style.display = 'block';
-    document.body.style.overflow = 'hidden';
+    document.body.classList.add('modal-open');
     
-    const form = modal.querySelector('#paymentForm');
-    form.reset();
-    document.querySelectorAll('.payment-method').forEach(btn => btn.classList.remove('selected'));
+    // Reset form and selections
+    resetModalForm(modal);
 }
 
+function parseDateString(dateStr) {
+    return new Date(dateStr);
+}
+
+function formatEventDate(date) {
+    return date.toLocaleDateString('en-US', {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
+}
+
+function parsePrice(priceStr) {
+    return parseFloat(priceStr.replace(/[^\d.]/g, '')) || 0;
+}
+
+function calculateFees(price) {
+    return {
+        serviceFee: price * 0.05,
+        vat: price * 0.14,
+        total: price * 1.19 // Price + 5% service fee + 14% VAT
+    };
+}
+
+function updateModalContent(modal, { date, time, ticketInfo, fees, location }) {
+    // Update event details
+    modal.querySelector('.event-date').textContent = date;
+    modal.querySelector('.event-time').textContent = time;
+    modal.querySelector('.event-location').textContent = location;
+    modal.querySelector('.ticket-info').textContent = ticketInfo.title;
+
+    // Update price breakdown
+    modal.querySelector('.subtotal').textContent = `${ticketInfo.price.toFixed(2)} EGP`;
+    modal.querySelector('.service-fee').textContent = `${fees.serviceFee.toFixed(2)} EGP`;
+    modal.querySelector('.vat-amount').textContent = `${fees.vat.toFixed(2)} EGP`;
+    modal.querySelector('.total-amount').textContent = `${fees.total.toFixed(2)} EGP`;
+
+    // Update payment method instructions
+    const totalAmountElements = modal.querySelectorAll('.payment-instructions .total-amount');
+    totalAmountElements.forEach(el => {
+        el.textContent = `${fees.total.toFixed(2)} EGP`;
+    });
+}
+
+function resetModalForm(modal) {
+    const form = modal.querySelector('#paymentForm');
+    if (form) {
+        form.reset();
+        form.querySelectorAll('.error').forEach(el => el.classList.remove('error'));
+    }
+    modal.querySelectorAll('.payment-method').forEach(btn => btn.classList.remove('selected'));
+    modal.querySelectorAll('.payment-details-section').forEach(section => {
+        section.classList.remove('active');
+    });
+}
+
+// Payment method selection handling
 function selectPaymentMethod(e) {
     const buttons = document.querySelectorAll('.payment-method');
     buttons.forEach(btn => btn.classList.remove('selected'));
     e.currentTarget.classList.add('selected');
     
-    // Toggle credit card fields
-    const creditCardFields = document.getElementById('creditCardFields');
-    creditCardFields.style.display = 
-        e.currentTarget.dataset.method === 'credit-card' ? 'block' : 'none';
+    const methodType = e.currentTarget.dataset.method;
+    showPaymentDetails(methodType);
+    updateFormRequirements(methodType);
 }
+
+function showPaymentDetails(methodType) {
+    document.querySelectorAll('.payment-details-section').forEach(section => {
+        section.classList.remove('active');
+    });
+    
+    const detailsSection = document.querySelector(`.${methodType}-details`);
+    if (detailsSection) {
+        detailsSection.classList.add('active');
+    }
+}
+
+// Form validation and submission
+document.getElementById('paymentForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    if (!validatePaymentForm(this)) {
+        return;
+    }
+
+    const confirmBtn = this.querySelector('#confirmPayment');
+    setLoadingState(confirmBtn, true);
+
+    try {
+        await processPayment();
+        showSuccessMessage('Payment successful! Check your email for confirmation.');
+        closeModal();
+    } catch (error) {
+        showErrorMessage('Payment failed. Please try again.');
+    } finally {
+        setLoadingState(confirmBtn, false);
+    }
+});
+
+// Add these new utility functions
+function validatePaymentForm(form) {
+    const selectedMethod = document.querySelector('.payment-method.selected');
+    if (!selectedMethod) {
+        showErrorMessage('Please select a payment method');
+        return false;
+    }
+
+    const requiredFields = form.querySelectorAll('[required]');
+    let isValid = true;
+
+    requiredFields.forEach(field => {
+        if (!field.value.trim()) {
+            markFieldAsError(field);
+            isValid = false;
+        } else {
+            markFieldAsValid(field);
+        }
+    });
+
+    if (!isValid) {
+        showErrorMessage('Please fill in all required fields');
+        return false;
+    }
+
+    if (!form.querySelector('#terms').checked) {
+        showErrorMessage('Please accept the terms and conditions');
+        return false;
+    }
+
+    return true;
+}
+
+function markFieldAsError(field) {
+    field.closest('.form-group')?.classList.add('error');
+}
+
+function markFieldAsValid(field) {
+    field.closest('.form-group')?.classList.remove('error');
+}
+
+function setLoadingState(button, isLoading) {
+    if (!button) return;
+    
+    button.disabled = isLoading;
+    button.innerHTML = isLoading ? 
+        '<i class="fas fa-spinner fa-spin"></i> Processing...' : 
+        'Confirm Payment';
+}
+
+function processPayment() {
+    // Simulate payment processing
+    return new Promise((resolve) => {
+        setTimeout(resolve, 2000);
+    });
+}
+
+function closeModal() {
+    const modal = document.getElementById('paymentModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    }
+}
+
+// Add event listeners for payment methods
+document.querySelectorAll('.payment-method').forEach(method => {
+    method.addEventListener('click', selectPaymentMethod);
+});
+
+// Add validation for credit card inputs
+document.getElementById('cardNumber')?.addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 16);
+});
+
+document.getElementById('expiryDate')?.addEventListener('input', function(e) {
+    this.value = this.value
+        .replace(/\D/g, '')
+        .replace(/(\d{2})(\d)/, '$1/$2')
+        .slice(0, 5);
+});
+
+document.getElementById('cvv')?.addEventListener('input', function(e) {
+    this.value = this.value.replace(/\D/g, '').slice(0, 3);
+});
 
 // Add form validation and handling
 document.getElementById('paymentForm').addEventListener('submit', async function(e) {
@@ -386,3 +570,76 @@ document.getElementById('paymentForm').addEventListener('submit', async function
         confirmBtn.innerHTML = 'Confirm Payment';
     }
 });
+
+// Event Details Page Initialization
+function initEventDetailsPage() {
+    if (!document.querySelector('.event-details-section')) return;
+
+    // Initialize booking buttons
+    document.querySelectorAll('.book-btn').forEach(button => {
+        button.addEventListener('click', handleEventBooking);
+    });
+}
+
+function handleEventBooking(e) {
+    e.preventDefault();
+    const button = e.currentTarget;
+    const ticketType = button.closest('.ticket-type');
+    if (!ticketType) return;
+
+    const eventDetails = {
+        title: document.querySelector('.event-info-detailed h1')?.textContent,
+        date: document.querySelector('.event-meta .fa-calendar')?.parentNode?.textContent,
+        time: document.querySelector('.event-meta .fa-clock')?.parentNode?.textContent,
+        location: document.querySelector('.event-meta .fa-map-marker-alt')?.parentNode?.textContent,
+        ticketType: ticketType.querySelector('h3')?.textContent,
+        price: parsePrice(ticketType.querySelector('.price')?.textContent || '0')
+    };
+
+    showBookingModal(eventDetails);
+}
+
+function showBookingModal(eventDetails) {
+    const modal = document.getElementById('paymentModal');
+    if (!modal) return;
+
+    // Update modal content with event details
+    updateModalEventDetails(modal, eventDetails);
+
+    // Show modal
+    modal.style.display = 'block';
+    document.body.classList.add('modal-open');
+
+    // Reset form and payment methods
+    resetModalForm(modal);
+
+    // Initialize close handlers
+    initializeModalCloseHandlers(modal);
+}
+
+function updateModalEventDetails(modal, details) {
+    // Update event summary
+    modal.querySelector('.event-date').textContent = details.date;
+    modal.querySelector('.event-time').textContent = details.time;
+    modal.querySelector('.event-location').textContent = details.location;
+    modal.querySelector('.ticket-info').textContent = details.ticketType;
+
+    // Calculate and update prices
+    const fees = calculateFees(details.price);
+    updatePriceBreakdown(modal, details.price, fees);
+}
+
+function initializeModalCloseHandlers(modal) {
+    const closeBtn = modal.querySelector('.close-modal');
+    closeBtn?.addEventListener('click', () => {
+        modal.style.display = 'none';
+        document.body.classList.remove('modal-open');
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === modal) {
+            modal.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+    });
+}
